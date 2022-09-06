@@ -1,0 +1,18 @@
+#! /bin/bash
+
+if [ -z "$1" ]; then
+    echo "You need to use \"dev\" or \"prod\" as an argument"
+    exit
+fi
+
+if [ ! -f .env ]; then
+    cp .env.model .env
+fi
+
+if [[ "$1" == "dev" ]]; then
+    docker compose -f docker-compose.yaml -f docker-docker-compose.override.yaml --env-file .env up -d
+fi
+
+if [[ "$1" == "prod" ]]; then
+    docker compose -f docker-compose.prod.yaml --env-file .env up -d
+fi
