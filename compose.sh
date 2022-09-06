@@ -6,11 +6,15 @@ if [ -z "$1" ]; then
 fi
 
 if [ ! -f .env ]; then
+    UUID=$(cat /proc/sys/kernel/random/uuid)
     cp .env.model .env
+    sed -i "s/PGPASSWORD =/PGPASSWORD = $UUID/" .env
+    sed -i "s/PGUSER =/PGUSER = $UUID/" .env
 fi
 
 if [[ "$1" == "dev" ]]; then
-    docker compose -f docker-compose.yaml -f docker-docker-compose.override.yaml --env-file .env up -d
+    npm run build
+    docker compose -f docker-compose.yaml -f docker-compose.override.yaml --env-file .env up -d
 fi
 
 if [[ "$1" == "prod" ]]; then
