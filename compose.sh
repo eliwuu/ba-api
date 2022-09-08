@@ -14,7 +14,7 @@ fi
 
 if [[ "$1" == "dev" ]]; then
     npm run build
-    docker compose -f docker-compose.yaml -f docker-compose.override.yaml --env-file .env up -d
+    docker compose -f docker-compose.yaml -f docker-compose.override.yaml --env-file .env up -d --build
 fi
 
 if [[ "$1" == "prod" ]]; then
