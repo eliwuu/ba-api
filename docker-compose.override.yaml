@@ -2,9 +2,10 @@ version: '3.9'
 services:
   bikeramp:
     container_name: bikeramp-api-dev
+    command: npm run start:debug
     build:
-      context: ./dist
+      context: ./
       dockerfile: Dockerfile.dev
     volumes:
-      - ./dist:/app/dist
+      - ./:/app
       - /app/node_modules
