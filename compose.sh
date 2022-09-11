@@ -10,6 +10,7 @@ if [ ! -f .env ]; then
     cp .env.model .env
     sed -i "s/PGPASSWORD =/PGPASSWORD = $UUID/" .env
     sed -i "s/PGUSER =/PGUSER = $UUID/" .env
+    sed -i "s/POSTGRES_PASSWORD =/POSTGRES_PASSWORD = $UUID/" .env
 fi
 
 if [[ "$1" == "dev" ]]; then
