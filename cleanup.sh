@@ -1,3 +1,3 @@
 #! /bin/bash
 
-docker rm -f --remove-orphans
+docker rm -f
